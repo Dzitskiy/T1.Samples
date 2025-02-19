@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+src/5.13/EFSample
+src/5.13/Samples
+src/5.4/EFSample
+src/5.6/EFSample
+src/5.6/Samples
+src/5.9/Samples
