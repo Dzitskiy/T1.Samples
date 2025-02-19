@@ -1,0 +1,13 @@
+﻿{
+  "Key": "value",
+
+  "User": {
+    "FirstName": "Tim",
+    "LastName": "Corey"
+
+  },
+  "StarterCountValue": 5,
+
+  "MySecretValue": ""
+
+}

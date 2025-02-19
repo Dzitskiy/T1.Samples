@@ -1,0 +1,19 @@
+{
+  "profiles": {
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    },
+    "Development": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "RUNTIME_ENVIRONMENT": "Development"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "RUNTIME_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

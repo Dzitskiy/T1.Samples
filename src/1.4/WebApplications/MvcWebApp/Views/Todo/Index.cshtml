@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MvcWebApp.Models.TodoItem>
+
+@{
+    ViewData["Title"] = "Список дел";
+}
+
+<h1>Список дел</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить задачу</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Завершено</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>
+                    <input type="checkbox" @(item.IsCompleted ? "checked" : "") disabled />
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,57 @@
+﻿@page "/todo"
+@using BlazorApp.Data
+@using BlazorApp.Models
+@using Microsoft.EntityFrameworkCore
+@inject TodoContext DbContext
+
+<h3>Список дел</h3>
+
+<input @bind="newTodoTitle" placeholder="Введите название задачи" />
+<button @onclick="AddTodo">Добавить</button>
+
+<ul>
+    @foreach (var item in todoItems)
+    {
+        <li>
+            <input type="checkbox" @bind="item.IsCompleted"@*  @onchange="() => UpdateTodo(item)" *@ />
+
+            @item.Title
+            <button @onclick="() => DeleteTodo(item)">Удалить</button>
+        </li>
+    }
+</ul>
+
+@code {
+    private string newTodoTitle;
+    private List<TodoItem> todoItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        todoItems = await DbContext.TodoItems.ToListAsync();
+    }
+
+    private async Task AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodoTitle))
+        {
+            var todoItem = new TodoItem { Title = newTodoTitle, IsCompleted = false };
+            DbContext.TodoItems.Add(todoItem);
+            await DbContext.SaveChangesAsync();
+            newTodoTitle = string.Empty;
+            todoItems = await DbContext.TodoItems.ToListAsync();
+        }
+    }
+
+    private async Task UpdateTodo(TodoItem item)
+    {
+        DbContext.TodoItems.Update(item);
+        await DbContext.SaveChangesAsync();
+    }
+
+    private async Task DeleteTodo(TodoItem item)
+    {
+        DbContext.TodoItems.Remove(item);
+        await DbContext.SaveChangesAsync();
+        todoItems = await DbContext.TodoItems.ToListAsync();
+    }
+}

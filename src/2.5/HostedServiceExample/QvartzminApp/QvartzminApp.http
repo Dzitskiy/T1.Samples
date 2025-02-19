@@ -1,0 +1,6 @@
+@QvartzminApp_HostAddress = http://localhost:5208
+
+GET {{QvartzminApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

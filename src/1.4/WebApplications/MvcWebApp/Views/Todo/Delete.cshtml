@@ -1,0 +1,24 @@
+﻿@model MvcWebApp.Models.TodoItem
+
+@{
+    ViewData["Title"] = "Удалить задачу";
+}
+
+<h1>Удалить задачу</h1>
+
+<h4>TodoItem</h4>
+<hr />
+<div>
+    <h3>Вы уверены, что хотите удалить эту задачу?</h3>
+    <div>
+        <h4>@Model.Title</h4>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <input type="submit" value="Удалить" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+</div>
